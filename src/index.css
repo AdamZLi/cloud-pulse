@@ -6,34 +6,34 @@
 
 @layer base {
   :root {
-    /* Dark professional theme */
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    /* Light professional theme - Linear inspired */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 210 100% 52%;
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 222 47% 12%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 215 25% 25%;
 
-    --muted: 222 47% 14%;
-    --muted-foreground: 215 20% 55%;
+    --muted: 214 32% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 222 47% 16%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 214 32% 96%;
+    --accent-foreground: 215 25% 15%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 222 30% 16%;
-    --input: 222 30% 18%;
-    --ring: 210 100% 52%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
 
     --radius: 0.75rem;
 
@@ -46,41 +46,25 @@
     --gcp-green: 142 69% 43%;
 
     /* Announcement type colors */
-    --feature: 210 100% 52%;
+    --feature: 217 91% 60%;
     --security: 0 84% 60%;
     --availability: 142 69% 43%;
     --performance: 280 65% 60%;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(222 47% 8%) 0%, hsl(222 47% 12%) 100%);
-    --gradient-card-hover: linear-gradient(135deg, hsl(222 47% 10%) 0%, hsl(222 47% 14%) 100%);
-    --gradient-aws: linear-gradient(135deg, hsl(32 100% 50% / 0.15) 0%, transparent 100%);
-    --gradient-azure: linear-gradient(135deg, hsl(207 100% 41% / 0.15) 0%, transparent 100%);
-    --gradient-gcp: linear-gradient(135deg, hsl(217 89% 61% / 0.15) 0%, transparent 100%);
-
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
-    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.4), 0 2px 4px -2px hsl(0 0% 0% / 0.3);
-    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.5), 0 4px 6px -4px hsl(0 0% 0% / 0.4);
-    --shadow-glow-primary: 0 0 20px hsl(210 100% 52% / 0.3);
-    --shadow-glow-aws: 0 0 20px hsl(32 100% 50% / 0.2);
-    --shadow-glow-azure: 0 0 20px hsl(207 100% 41% / 0.2);
-    --shadow-glow-gcp: 0 0 20px hsl(217 89% 61% / 0.2);
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.07), 0 2px 4px -2px hsl(0 0% 0% / 0.05);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.08), 0 4px 6px -4px hsl(0 0% 0% / 0.05);
 
     /* Sidebar */
-    --sidebar-background: 222 47% 6%;
-    --sidebar-foreground: 210 40% 85%;
-    --sidebar-primary: 210 100% 52%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 215 25% 35%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 47% 12%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 222 30% 16%;
-    --sidebar-ring: 210 100% 52%;
-  }
-
-  .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    --sidebar-accent: 214 32% 96%;
+    --sidebar-accent-foreground: 215 25% 15%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
@@ -96,37 +80,24 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background: linear-gradient(135deg, hsl(210 20% 98%) 0%, hsl(214 32% 96%) 100%);
+    min-height: 100vh;
   }
 }
 
 @layer components {
-  .provider-badge {
-    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold transition-all duration-200;
-  }
-
-  .provider-badge-aws {
-    @apply bg-[hsl(var(--aws)/0.15)] text-[hsl(32_100%_55%)] border border-[hsl(var(--aws)/0.3)];
-  }
-
-  .provider-badge-azure {
-    @apply bg-[hsl(var(--azure)/0.15)] text-[hsl(207_100%_55%)] border border-[hsl(var(--azure)/0.3)];
-  }
-
-  .provider-badge-gcp {
-    @apply bg-[hsl(var(--gcp-blue)/0.15)] text-[hsl(217_89%_70%)] border border-[hsl(var(--gcp-blue)/0.3)];
-  }
-
   .announcement-card {
-    @apply relative bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:border-[hsl(var(--border)/0.8)];
+    @apply relative bg-card border border-border rounded-xl overflow-hidden transition-all duration-200;
+    box-shadow: var(--shadow-sm);
   }
 
   .announcement-card:hover {
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
   }
 
   .announcement-card::before {
     content: '';
-    @apply absolute left-0 top-0 bottom-0 w-1 opacity-0 transition-opacity duration-300;
+    @apply absolute left-0 top-0 bottom-0 w-1 opacity-0 transition-opacity duration-200;
   }
 
   .announcement-card:hover::before {
@@ -149,37 +120,9 @@
     @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium bg-muted text-muted-foreground;
   }
 
-  .announcement-type-tag {
-    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium;
-  }
-
-  .announcement-type-feature {
-    @apply bg-[hsl(var(--feature)/0.15)] text-[hsl(var(--feature))];
-  }
-
-  .announcement-type-security {
-    @apply bg-[hsl(var(--security)/0.15)] text-[hsl(var(--security))];
-  }
-
-  .announcement-type-availability {
-    @apply bg-[hsl(var(--availability)/0.15)] text-[hsl(var(--availability))];
-  }
-
-  .glass-panel {
-    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
-  }
-
-  .filter-chip {
-    @apply px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer;
-  }
-
-  .filter-chip-inactive {
-    @apply bg-secondary text-muted-foreground hover:bg-accent hover:text-foreground;
-  }
-
-  .filter-chip-active {
-    @apply bg-primary text-primary-foreground shadow-md;
-    box-shadow: var(--shadow-glow-primary);
+  .filter-select {
+    @apply h-9 px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-foreground transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary;
   }
 
   .sync-pulse {

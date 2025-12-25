@@ -1,5 +1,5 @@
-import { FilterState, Provider, StorageType, AnnouncementType, DateRange } from "@/types/announcement";
-import { Search, Filter, X } from "lucide-react";
+import { FilterState, Provider, StorageType, DateRange } from "@/types/announcement";
+import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -18,31 +18,23 @@ const providers: { value: Provider; label: string }[] = [
 ];
 
 const storageTypes: { value: StorageType; label: string }[] = [
-  { value: "all", label: "All Storage" },
-  { value: "Block Storage", label: "Block" },
-  { value: "Object Storage", label: "Object" },
-  { value: "File Storage", label: "File" },
-];
-
-const announcementTypes: { value: AnnouncementType; label: string }[] = [
-  { value: "all", label: "All Types" },
-  { value: "Feature Update", label: "Feature" },
-  { value: "Security/Compliance", label: "Security" },
-  { value: "Availability Update", label: "Availability" },
+  { value: "all", label: "All Categories" },
+  { value: "Block Storage", label: "Block Storage" },
+  { value: "Object Storage", label: "Object Storage" },
+  { value: "File Storage", label: "File Storage" },
 ];
 
 const dateRanges: { value: DateRange; label: string }[] = [
-  { value: "24hrs", label: "24h" },
-  { value: "7days", label: "7 days" },
-  { value: "30days", label: "30 days" },
-  { value: "all", label: "All time" },
+  { value: "all", label: "All Time" },
+  { value: "24hrs", label: "Last 24 Hours" },
+  { value: "7days", label: "Last 7 Days" },
+  { value: "30days", label: "Last 30 Days" },
 ];
 
 export function FilterBar({ filters, onFiltersChange, totalCount, filteredCount }: FilterBarProps) {
   const hasActiveFilters = 
     filters.provider !== "all" || 
     filters.storageType !== "all" || 
-    filters.announcementType !== "all" ||
     filters.dateRange !== "all" ||
     filters.searchQuery !== "";
 
@@ -60,114 +52,83 @@ export function FilterBar({ filters, onFiltersChange, totalCount, filteredCount 
     <div className="space-y-4">
       {/* Search Bar */}
       <div className="relative">
-        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <Input
           type="text"
           placeholder="Search announcements..."
           value={filters.searchQuery}
           onChange={(e) => onFiltersChange({ ...filters, searchQuery: e.target.value })}
-          className="pl-11 pr-4 py-3 h-12 bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20"
+          className="pl-10 pr-4 h-10 bg-card border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20"
         />
         {filters.searchQuery && (
           <button
             onClick={() => onFiltersChange({ ...filters, searchQuery: "" })}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         )}
       </div>
 
-      {/* Filter Chips */}
-      <div className="flex flex-wrap gap-3 items-center">
-        <div className="flex items-center gap-2 text-muted-foreground">
-          <Filter className="w-4 h-4" />
-          <span className="text-sm font-medium">Filters:</span>
-        </div>
+      {/* Filters Row */}
+      <div className="flex flex-wrap items-center gap-3">
+        <span className="text-sm text-muted-foreground">Filter:</span>
 
-        {/* Provider Filter */}
-        <div className="flex gap-1.5 flex-wrap">
+        {/* Provider Select */}
+        <select
+          value={filters.provider}
+          onChange={(e) => onFiltersChange({ ...filters, provider: e.target.value as Provider })}
+          className="filter-select"
+        >
           {providers.map((p) => (
-            <button
-              key={p.value}
-              onClick={() => onFiltersChange({ ...filters, provider: p.value })}
-              className={`filter-chip ${
-                filters.provider === p.value ? "filter-chip-active" : "filter-chip-inactive"
-              }`}
-            >
+            <option key={p.value} value={p.value}>
               {p.label}
-            </button>
+            </option>
           ))}
-        </div>
+        </select>
 
-        <span className="text-border hidden sm:block">|</span>
-
-        {/* Storage Type Filter */}
-        <div className="flex gap-1.5 flex-wrap">
+        {/* Category Select */}
+        <select
+          value={filters.storageType}
+          onChange={(e) => onFiltersChange({ ...filters, storageType: e.target.value as StorageType })}
+          className="filter-select"
+        >
           {storageTypes.map((s) => (
-            <button
-              key={s.value}
-              onClick={() => onFiltersChange({ ...filters, storageType: s.value })}
-              className={`filter-chip ${
-                filters.storageType === s.value ? "filter-chip-active" : "filter-chip-inactive"
-              }`}
-            >
+            <option key={s.value} value={s.value}>
               {s.label}
-            </button>
+            </option>
           ))}
-        </div>
+        </select>
 
-        <span className="text-border hidden sm:block">|</span>
-
-        {/* Announcement Type Filter */}
-        <div className="flex gap-1.5 flex-wrap">
-          {announcementTypes.map((a) => (
-            <button
-              key={a.value}
-              onClick={() => onFiltersChange({ ...filters, announcementType: a.value })}
-              className={`filter-chip ${
-                filters.announcementType === a.value ? "filter-chip-active" : "filter-chip-inactive"
-              }`}
-            >
-              {a.label}
-            </button>
-          ))}
-        </div>
-
-        <span className="text-border hidden sm:block">|</span>
-
-        {/* Date Range Filter */}
-        <div className="flex gap-1.5 flex-wrap">
+        {/* Date Range Select */}
+        <select
+          value={filters.dateRange}
+          onChange={(e) => onFiltersChange({ ...filters, dateRange: e.target.value as DateRange })}
+          className="filter-select"
+        >
           {dateRanges.map((d) => (
-            <button
-              key={d.value}
-              onClick={() => onFiltersChange({ ...filters, dateRange: d.value })}
-              className={`filter-chip ${
-                filters.dateRange === d.value ? "filter-chip-active" : "filter-chip-inactive"
-              }`}
-            >
+            <option key={d.value} value={d.value}>
               {d.label}
-            </button>
+            </option>
           ))}
-        </div>
-      </div>
+        </select>
 
-      {/* Results count & clear */}
-      <div className="flex items-center justify-between">
-        <p className="text-sm text-muted-foreground">
-          Showing <span className="font-semibold text-foreground">{filteredCount}</span> of{" "}
-          <span className="font-semibold text-foreground">{totalCount}</span> announcements
-        </p>
+        <span className="text-muted-foreground/50">|</span>
+
+        {/* Results count */}
+        <span className="text-sm text-muted-foreground">
+          <span className="font-medium text-foreground">{filteredCount}</span> announcements
+        </span>
         
         {hasActiveFilters && (
           <Button
             variant="ghost"
             size="sm"
             onClick={clearFilters}
-            className="text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground h-8 px-2"
           >
             <X className="w-3 h-3 mr-1" />
-            Clear filters
+            Clear
           </Button>
         )}
       </div>
