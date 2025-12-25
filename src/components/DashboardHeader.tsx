@@ -1,4 +1,4 @@
-import { Bell, BellRing, Cloud, RefreshCw } from "lucide-react";
+import { Bell, BellRing, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface DashboardHeaderProps {
@@ -15,22 +15,17 @@ export function DashboardHeader({
   isLoading,
 }: DashboardHeaderProps) {
   return (
-    <header className="glass-panel sticky top-0 z-10 mb-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          {/* Logo & Title */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg shadow-primary/25">
-              <Cloud className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <div>
-              <h1 className="text-xl sm:text-2xl font-bold text-foreground tracking-tight">
-                Cloud Intel
-              </h1>
-              <p className="text-xs sm:text-sm text-muted-foreground">
-                Storage Announcements Tracker
-              </p>
-            </div>
+    <header className="sticky top-0 z-10 bg-card border-b border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+        <div className="flex items-center justify-between gap-4">
+          {/* Title */}
+          <div>
+            <h1 className="text-2xl font-bold text-foreground tracking-tight">
+              Competitive Intelligence
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              Cloud Storage Announcements
+            </p>
           </div>
 
           {/* Actions */}
@@ -49,10 +44,11 @@ export function DashboardHeader({
             <Button
               onClick={onToggleNotifications}
               variant={notificationsEnabled ? "default" : "outline"}
-              className={`transition-all duration-300 ${
+              size="sm"
+              className={`transition-all duration-200 ${
                 notificationsEnabled
-                  ? "bg-availability hover:bg-availability/90 text-primary-foreground shadow-lg shadow-availability/25"
-                  : "border-border hover:bg-accent"
+                  ? "bg-primary hover:bg-primary/90"
+                  : "border-border hover:bg-muted"
               }`}
             >
               {notificationsEnabled ? (

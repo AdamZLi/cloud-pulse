@@ -174,6 +174,13 @@ export function filterAnnouncements(announcements: Announcement[], filters: Filt
   });
 }
 
+export function isNew(dateString: string): boolean {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffHours = (now.getTime() - date.getTime()) / (1000 * 60 * 60);
+  return diffHours < 24;
+}
+
 export function formatDate(dateString: string): string {
   const date = parseISO(dateString);
   return date.toLocaleDateString("en-US", {

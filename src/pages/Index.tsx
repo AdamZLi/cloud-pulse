@@ -3,7 +3,6 @@ import { DashboardHeader } from "@/components/DashboardHeader";
 import { FilterBar } from "@/components/FilterBar";
 import { AnnouncementCard } from "@/components/AnnouncementCard";
 import { NotificationBanner } from "@/components/NotificationBanner";
-import { ProviderStats } from "@/components/ProviderStats";
 import { FilterState } from "@/types/announcement";
 import { sampleAnnouncements, filterAnnouncements } from "@/lib/announcements";
 import { Inbox } from "lucide-react";
@@ -30,7 +29,7 @@ const Index = () => {
   }, [filteredAnnouncements]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <DashboardHeader
         notificationsEnabled={notificationsEnabled}
         onToggleNotifications={() => setNotificationsEnabled(!notificationsEnabled)}
@@ -38,17 +37,14 @@ const Index = () => {
         isLoading={false}
       />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 pb-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         {/* Notification Banner */}
         {notificationsEnabled && (
           <NotificationBanner onDismiss={() => setNotificationsEnabled(false)} />
         )}
 
-        {/* Provider Stats */}
-        <ProviderStats announcements={sampleAnnouncements} />
-
         {/* Filters */}
-        <div className="glass-panel p-4 sm:p-6 mb-6">
+        <div className="bg-card border border-border rounded-xl p-4 sm:p-5 mb-6">
           <FilterBar
             filters={filters}
             onFiltersChange={setFilters}
@@ -68,7 +64,7 @@ const Index = () => {
               />
             ))
           ) : (
-            <div className="glass-panel p-12 text-center">
+            <div className="bg-card border border-border rounded-xl p-12 text-center">
               <div className="w-16 h-16 rounded-2xl bg-muted mx-auto mb-4 flex items-center justify-center">
                 <Inbox className="w-8 h-8 text-muted-foreground" />
               </div>
