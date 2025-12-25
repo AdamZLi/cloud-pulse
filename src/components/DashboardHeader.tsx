@@ -15,15 +15,15 @@ export function DashboardHeader({
   isLoading,
 }: DashboardHeaderProps) {
   return (
-    <header className="sticky top-0 z-10 bg-card border-b border-border">
+    <header className="sticky top-0 z-10 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
         <div className="flex items-center justify-between gap-4">
           {/* Title */}
           <div>
-            <h1 className="text-2xl font-bold text-foreground tracking-tight">
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
               Competitive Intelligence
             </h1>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-slate-500">
               Cloud Storage Announcements
             </p>
           </div>
@@ -31,7 +31,7 @@ export function DashboardHeader({
           {/* Actions */}
           <div className="flex items-center gap-3">
             {/* Sync Status */}
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <div className="flex items-center gap-2 text-xs text-slate-500">
               <div className="sync-pulse">
                 <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
               </div>
@@ -47,8 +47,8 @@ export function DashboardHeader({
               size="sm"
               className={`transition-all duration-200 ${
                 notificationsEnabled
-                  ? "bg-primary hover:bg-primary/90"
-                  : "border-border hover:bg-muted"
+                  ? "bg-blue-600 hover:bg-blue-700 text-white"
+                  : "border-slate-200 text-slate-700 hover:bg-slate-50"
               }`}
             >
               {notificationsEnabled ? (

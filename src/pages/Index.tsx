@@ -44,7 +44,7 @@ const Index = () => {
         )}
 
         {/* Filters */}
-        <div className="bg-card border border-border rounded-xl p-4 sm:p-5 mb-6">
+        <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 mb-6">
           <FilterBar
             filters={filters}
             onFiltersChange={setFilters}
@@ -64,14 +64,14 @@ const Index = () => {
               />
             ))
           ) : (
-            <div className="bg-card border border-border rounded-xl p-12 text-center">
-              <div className="w-16 h-16 rounded-2xl bg-muted mx-auto mb-4 flex items-center justify-center">
-                <Inbox className="w-8 h-8 text-muted-foreground" />
+            <div className="bg-white border border-slate-200 rounded-xl p-12 text-center">
+              <div className="w-16 h-16 rounded-2xl bg-slate-100 mx-auto mb-4 flex items-center justify-center">
+                <Inbox className="w-8 h-8 text-slate-400" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">
                 No announcements found
               </h3>
-              <p className="text-muted-foreground text-sm max-w-md mx-auto">
+              <p className="text-slate-500 text-sm max-w-md mx-auto">
                 Try adjusting your filters or search query to see more results.
               </p>
             </div>
@@ -80,9 +80,9 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border/50 py-6 mt-12">
+      <footer className="border-t border-slate-200 py-6 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-slate-500">
             Cloud Intel tracks announcements from AWS, Azure, and GCP. Data refreshed daily via n8n workflows.
           </p>
         </div>

@@ -6,27 +6,27 @@
 
 @layer base {
   :root {
-    /* Light professional theme - Linear inspired */
-    --background: 210 20% 98%;
-    --foreground: 215 25% 15%;
+    /* Light theme - slate palette */
+    --background: 210 40% 98%;
+    --foreground: 215 28% 17%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 215 28% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 215 28% 17%;
 
     --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 32% 91%;
-    --secondary-foreground: 215 25% 25%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 215 25% 27%;
 
-    --muted: 214 32% 96%;
+    --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 214 32% 96%;
-    --accent-foreground: 215 25% 15%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 215 28% 17%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -58,11 +58,11 @@
 
     /* Sidebar */
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 215 25% 35%;
+    --sidebar-foreground: 215 25% 27%;
     --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 214 32% 96%;
-    --sidebar-accent-foreground: 215 25% 15%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 215 28% 17%;
     --sidebar-border: 214 32% 91%;
     --sidebar-ring: 217 91% 60%;
   }
@@ -78,16 +78,17 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    background: linear-gradient(135deg, hsl(210 20% 98%) 0%, hsl(214 32% 96%) 100%);
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    color: #0f172a;
     min-height: 100vh;
   }
 }
 
 @layer components {
   .announcement-card {
-    @apply relative bg-card border border-border rounded-xl overflow-hidden transition-all duration-200;
+    @apply relative bg-white border border-slate-200 rounded-xl overflow-hidden transition-all duration-200;
     box-shadow: var(--shadow-sm);
   }
 
@@ -117,12 +118,12 @@
   }
 
   .storage-tag {
-    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium bg-muted text-muted-foreground;
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium bg-slate-100 text-slate-700;
   }
 
   .filter-select {
-    @apply h-9 px-3 py-1.5 rounded-lg text-sm font-medium bg-card border border-border text-foreground transition-all duration-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary;
+    @apply h-9 px-3 py-1.5 rounded-lg text-sm font-medium bg-white border border-slate-200 text-slate-900 transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500;
   }
 
   .sync-pulse {
@@ -131,16 +132,16 @@
 
   .sync-pulse::after {
     content: '';
-    @apply absolute top-0 right-0 w-2 h-2 bg-[hsl(var(--availability))] rounded-full;
+    @apply absolute top-0 right-0 w-2 h-2 bg-emerald-500 rounded-full;
     animation: pulse-ring 2s ease-out infinite;
   }
 
   @keyframes pulse-ring {
     0% {
-      box-shadow: 0 0 0 0 hsl(var(--availability) / 0.5);
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
     }
     100% {
-      box-shadow: 0 0 0 8px hsl(var(--availability) / 0);
+      box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
     }
   }
 

@@ -30,7 +30,7 @@ export function AnnouncementCard({ announcement, index = 0 }: AnnouncementCardPr
         <div className="flex items-start justify-between gap-4 mb-3">
           <div className="flex items-center gap-3">
             {/* Provider Logo */}
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-card border border-border overflow-hidden p-1.5 flex-shrink-0">
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-white border border-slate-200 overflow-hidden p-1.5 flex-shrink-0">
               <img 
                 src={providerLogos[announcement.provider]}
                 alt={`${announcement.provider} logo`}
@@ -40,10 +40,10 @@ export function AnnouncementCard({ announcement, index = 0 }: AnnouncementCardPr
             
             {/* Title */}
             <div className="min-w-0">
-              <h3 className="text-lg font-semibold text-foreground leading-snug line-clamp-1 group-hover:text-primary transition-colors">
+              <h3 className="text-lg font-semibold text-slate-900 leading-snug line-clamp-1 group-hover:text-blue-600 transition-colors">
                 {announcement.title}
               </h3>
-              <div className="flex items-center gap-2 mt-0.5 text-xs text-muted-foreground">
+              <div className="flex items-center gap-2 mt-0.5 text-xs text-slate-500">
                 <span>{announcement.provider}</span>
                 <span>•</span>
                 <span>{formatDate(announcement.announcement_date)}</span>
@@ -53,7 +53,7 @@ export function AnnouncementCard({ announcement, index = 0 }: AnnouncementCardPr
           
           <div className="flex items-center gap-2 flex-shrink-0">
             {isNewAnnouncement && (
-              <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+              <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-600">
                 New
               </span>
             )}
@@ -61,7 +61,7 @@ export function AnnouncementCard({ announcement, index = 0 }: AnnouncementCardPr
               href={announcement.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors p-1.5 rounded-lg hover:bg-muted"
+              className="text-slate-400 hover:text-blue-600 transition-colors p-1.5 rounded-lg hover:bg-slate-100"
               aria-label="View original announcement"
             >
               <ExternalLink className="w-4 h-4" />
@@ -70,7 +70,7 @@ export function AnnouncementCard({ announcement, index = 0 }: AnnouncementCardPr
         </div>
 
         {/* Content */}
-        <p className="text-sm text-muted-foreground leading-relaxed mb-3 line-clamp-2">
+        <p className="text-sm text-slate-600 leading-relaxed mb-3 line-clamp-2">
           {announcement.content}
         </p>
 
