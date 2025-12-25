@@ -52,18 +52,18 @@ export function FilterBar({ filters, onFiltersChange, totalCount, filteredCount 
     <div className="space-y-4">
       {/* Search Bar */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
         <Input
           type="text"
           placeholder="Search announcements..."
           value={filters.searchQuery}
           onChange={(e) => onFiltersChange({ ...filters, searchQuery: e.target.value })}
-          className="pl-10 pr-4 h-10 bg-card border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20"
+          className="pl-10 pr-4 h-10 bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:ring-blue-500/20"
         />
         {filters.searchQuery && (
           <button
             onClick={() => onFiltersChange({ ...filters, searchQuery: "" })}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -72,7 +72,7 @@ export function FilterBar({ filters, onFiltersChange, totalCount, filteredCount 
 
       {/* Filters Row */}
       <div className="flex flex-wrap items-center gap-3">
-        <span className="text-sm text-muted-foreground">Filter:</span>
+        <span className="text-sm text-slate-500">Filter:</span>
 
         {/* Provider Select */}
         <select
@@ -113,11 +113,11 @@ export function FilterBar({ filters, onFiltersChange, totalCount, filteredCount 
           ))}
         </select>
 
-        <span className="text-muted-foreground/50">|</span>
+        <span className="text-slate-300">|</span>
 
         {/* Results count */}
-        <span className="text-sm text-muted-foreground">
-          <span className="font-medium text-foreground">{filteredCount}</span> announcements
+        <span className="text-sm text-slate-500">
+          <span className="font-medium text-slate-900">{filteredCount}</span> announcements
         </span>
         
         {hasActiveFilters && (
@@ -125,7 +125,7 @@ export function FilterBar({ filters, onFiltersChange, totalCount, filteredCount 
             variant="ghost"
             size="sm"
             onClick={clearFilters}
-            className="text-muted-foreground hover:text-foreground h-8 px-2"
+            className="text-slate-500 hover:text-slate-700 hover:bg-slate-100 h-8 px-2"
           >
             <X className="w-3 h-3 mr-1" />
             Clear
