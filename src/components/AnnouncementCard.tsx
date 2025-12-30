@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { Announcement } from "@/types/announcement";
 import { formatDate, isNew } from "@/lib/announcements";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
 import awsLogo from "@/assets/aws.png";
 import azureLogo from "@/assets/azure.png";
 import gcpLogo from "@/assets/gcp.png";
@@ -17,8 +18,12 @@ const providerLogos: Record<string, string> = {
 };
 
 export function AnnouncementCard({ announcement, index = 0 }: AnnouncementCardProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const providerClass = `announcement-card-${announcement.provider.toLowerCase()}`;
   const isNewAnnouncement = isNew(announcement.announcement_date);
+  
+  // Check if content is long enough to need expansion (roughly more than 2 lines)
+  const needsExpansion = announcement.content.length > 150;
   
   return (
     <article 
@@ -70,9 +75,27 @@ export function AnnouncementCard({ announcement, index = 0 }: AnnouncementCardPr
         </div>
 
         {/* Content */}
-        <p className="text-sm text-slate-600 leading-relaxed mb-3 line-clamp-2">
+        <p className={`text-sm text-slate-600 leading-relaxed mb-2 ${isExpanded ? '' : 'line-clamp-2'}`}>
           {announcement.content}
         </p>
+
+        {/* Read More Button */}
+        {needsExpansion && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-xs text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1 mb-3 transition-colors"
+          >
+            {isExpanded ? (
+              <>
+                Show less <ChevronUp className="w-3 h-3" />
+              </>
+            ) : (
+              <>
+                Read more <ChevronDown className="w-3 h-3" />
+              </>
+            )}
+          </button>
+        )}
 
         {/* Category Tag */}
         <span className="storage-tag">
